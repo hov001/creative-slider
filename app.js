@@ -1,14 +1,19 @@
+// DOM variables
 const btnUp = document.querySelector('.up-button')
 const btnDown = document.querySelector('.down-button')
 const container = document.querySelector('.container')
+const containerHeight = container.clientHeight
 const sidebar = document.querySelector('.sidebar')
 const mainSlide = document.querySelector('.main-slide')
 const slidesCount = mainSlide.querySelectorAll('.main-slide__item').length
 
+// Active Index
 let activeSlideIndex = 0
 
+// Last sidebar item
 sidebar.style.top = `-${(slidesCount - 1) * 100}vh`
 
+// Event listeners
 btnUp.addEventListener('click', () => {
   sliderListener('up')
 })
@@ -16,7 +21,9 @@ btnDown.addEventListener('click', () => {
   sliderListener('down')
 })
 
+// Slider listener function
 function sliderListener(button) {
+  // Detect button's direction
   if (button === 'up') {
     activeSlideIndex++
     if (activeSlideIndex === slidesCount) {
@@ -28,8 +35,6 @@ function sliderListener(button) {
       activeSlideIndex = slidesCount - 1
     }
   }
-
-  const containerHeight = container.clientHeight
 
   mainSlide.style.transform = `translateY(-${
     containerHeight * activeSlideIndex
